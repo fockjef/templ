@@ -2,7 +2,7 @@
 Regex based template engine with some nifty features. Fully compatibility with [mustache](https://mustache.github.io) templates while incorporating the ability to use simple logic within templates.
 
 #### Features:
-* Backtracking with ../ syntax
+* Backtracking with _../_ syntax
 * Reference current array index (1-based) with {{#}}
 * Ability to execute arbitrary javascript within template {{somenum.toFixed(3)}}
 * _this_ syntax for referencing current context
