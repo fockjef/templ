@@ -15,10 +15,8 @@ Regex based template engine with some nifty features. Fully compatibility with [
 **Data:**
 ````
 {
-   name: {
-      first: "Bob",
-      last: "Smith"
-   },
+   first: "Bob",
+   last: "Smith",
    dob: "3/2/1987",
    pets: [
       { name: "Rover", type: "dog", favorite: true },
@@ -29,19 +27,19 @@ Regex based template engine with some nifty features. Fully compatibility with [
 ````
 **Template:**
 ````
-{{name.first}} {{name.last}} is {{new Date(Date.now()-new Date(this.dob)).getFullYear()-1970}} years old.
-{{name.first}} has {{pets.length}} pet{{pets.length==1?"":"s"}}.
+{{first}} {{last}} is {{new Date(Date.now()-new Date(this.dob)).getFullYear()-1970}} years old.<br>
+{{first}} has {{pets.length}} pet{{pets.length==1?"":"s"}}.<br>
 {{#pets}}
-{{name}} is a {{type}}{{#favorite}} and is {{../../name.first}}'s favorite pet{{/favorite}}.
+{{name}} is a {{type}}{{#favorite}} and is {{../../first}}'s favorite pet{{/favorite}}.<br>
 {{/pets}}
 ````
 **Results:**
 
-Bob Smith is 31 years old.
-Bob has 3 pets.
-Rover is a dog and is Bob's favorite pet.
-Kitty is a cat.
-Goldy is a fish.
+Bob Smith is 31 years old.<br>
+Bob has 3 pets.<br>
+Rover is a dog and is Bob's favorite pet.<br>
+Kitty is a cat.<br>
+Goldy is a fish.<br>
 
 ---
 For more examples and a better understanding of templating in general see the mustache documentation at [https://mustache.github.io/mustache.5.html](https://mustache.github.io/mustache.5.html)
