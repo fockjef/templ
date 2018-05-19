@@ -15,43 +15,33 @@ Regex based template engine with some nifty features. Fully compatibility with [
 **Data:**
 ````
 {
-   foo: "bar",
-   num: [1.6180339887498,2.7182818,3.14159],
-   cat: {
-      name: "Garfield",
-      likes: ["spaghetti","naps"]
-   }
+   name: {
+      first: "Bob",
+      last: "Smith"
+   },
+   dob: "3/2/1987",
+   pets: [
+      { name: "Rover", type: "dog", favorite: true },
+      { name: "Kitty", type: "cat" },
+      { name: "Goldy", type: "fish" }
+   ]
 }
 ````
 **Template:**
 ````
-foo is {{foo}}
-
-Here are {{num.length}} numbers:
-<ul>
-   {{#num}}
-   <li> Number {{#}} is {{this.toFixed(5)}}</li>
-   {{/num}}
-</ul>
-
-{{#cat}}
-{{name}} likes {{likes.join(" and ")}}.<br>
-His favorite number is {{../num.slice(-1)}}.
-{{/cat}}
+{{name.first}} {{name.last}} is {{new Date(Date.now()-new Date(this.dob)).getFullYear()-1970}} years old.
+{{name.first}} has {{pets.length}} pet{{pets.length==1?"":"s"}}.
+{{#pets}}
+{{name}} is a {{type}}{{#favorite}} and is {{../../name.first}}'s favorite pet{{/favorite}}.
+{{/pets}}
 ````
-**Results:**  
-  
-foo is bar
+**Results:**
 
-Here are 3 numbers:
-<ul>
-   <li> Number 1 is 1.61803</li>
-   <li> Number 2 is 2.71828</li>
-   <li> Number 3 is 3.14159</li>
-</ul>
+Bob Smith is 31 years old.
+Bob has 3 pets.
+Rover is a dog and is Bob's favorite pet.
+Kitty is a cat.
+Goldy is a fish.
 
-Garfield likes spaghetti and naps.<br>
-His favorite number is 3.14159.
-        
----        
+---
 For more examples and a better understanding of templating in general see the mustache documentation at [https://mustache.github.io/mustache.5.html](https://mustache.github.io/mustache.5.html)

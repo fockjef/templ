@@ -7,8 +7,9 @@ var templ = (function(defaultDelim){
             "dlmt": new RegExp("^([\\w\\W]*?)"+d[0]+"=\\s*(\\S+)\\s+(\\S+)\\s*="+d[1]+"([\\w\\W]*?)$","g"),
             "nest": new RegExp("("+d[0]+")([#^\\/])(.+?)("+d[1]+")","g"),
             "prtl": new RegExp("(^\\s*)?"+d[0]+">(.+?)"+d[1],"mg"),
+            "safe": new RegExp("("+d[0]+")(?!\0)","g"),
             "sctn": new RegExp(d[0]+"([#^])(.+?)"+d[1]+"([\\w\\W]*?)"+d[0]+"\\/\\2"+d[1],"g"),
-            "vrbl": new RegExp(d[0]+"([{&]?)(.+?)}?"+d[1],"g"),
+            "vrbl": new RegExp(d[0]+"(?!\0)([{&]?)(.+?)}?"+d[1],"g"),
             "wspc": new RegExp("(^|\\n+)(\\s*?)("+d[0]+"([!#^\\/=>])([\\w\\W]+?)"+d[1]+")\\s*?(?=\\n|$)","g")}
     }
     function getCtx(d,k){
@@ -52,9 +53,10 @@ var templ = (function(defaultDelim){
             case "vrbl":
                 return t.replace( re.vrbl, function(_,noEsc,key){
                     if( typeof (_ = getCtx(d,key)) === "function" ) _ = render(_.call(d[0]),d,p,_RE);
-                    return _ === undefined ? "" : (noEsc ? _ : document.createElement('div').appendChild(document.createTextNode(_)).parentNode.innerHTML.replace(/"/g,"&quot;"))});
+                    _ = _ === undefined ? "" : (noEsc ? _+"" : document.createElement('div').appendChild(document.createTextNode(_)).parentNode.innerHTML.replace(/"/g,"&quot;"));
+                    return _.replace(re.safe,"$1\0")});
         }
     }
     var _Idx, _RE = setDelim(defaultDelim);
-    return {"ate": function(t,d,p){return render(t,[d],p,_RE)}};
+    return {"ate": function(t,d,p){return render(t,[d],p,_RE).replace(/\0/g,"")}};
 })(["{{","}}"]);
