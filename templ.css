@@ -10,6 +10,9 @@ span.spec {
     font-weight: bold;
     margin-right: 25px;
 }
+span.toggle {
+    cursor: pointer;
+}
 span.toggle::after {
     content: "⊕";
     font-size: 80%;

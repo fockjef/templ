@@ -24,8 +24,8 @@
 
         window.onload = function(){
             var t0 = performance.now();
-            Object.values(spec).forEach(function(s){
-                s.tests.forEach(function(t){
+            Object.keys(spec).forEach(function(s){
+                spec[s].tests.forEach(function(t){
                     if( t.data.lambda ) t.data.lambda = new Function("return "+t.data.lambda.js)();
                     t.result = templ.ate(t.template,t.data,t.partials);
                     if( t.data.lambda ) t.data.lambda = t.data.lambda.toString();
