@@ -27,7 +27,7 @@ Regex based template engine with some nifty features. Fully compatibility with [
 ````
 **Template:**
 ````
-{{first}} {{last}} is {{new Date(Date.now()-new Date(this.dob)).getFullYear()-1970}} years old.<br>
+{&zwj;{first}} {{last}} is {{new Date(Date.now()-new Date(this.dob)).getFullYear()-1970}} years old.<br>
 {{first}} has {{pets.length}} pet{{pets.length==1?"":"s"}}.<br>
 {{#pets}}
 {{name}} is a {{type}}{{#favorite}} and is {{../../first}}'s favorite pet{{/favorite}}.<br>
