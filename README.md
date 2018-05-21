@@ -3,13 +3,13 @@ Regex based template engine with some nifty features. Fully compatibility with [
 
 #### Features:
 * Backtracking with _../_ syntax
-* Reference current array index (1-based) with {{#}}
-* Ability to execute arbitrary javascript within template {{somenum.toFixed(3)}}
+* Reference current array index (1-based) with {% raw %}{{#}}{% endraw %}
+* Ability to execute arbitrary javascript within template {% raw %}{{somenum.toFixed(3)}}{% endraw %}
 * _this_ syntax for referencing current context
 
 #### Caveats:
 * Slower performance than tokenizer based engines (but still plenty fast)
-* Ability to execute arbitrary javascript within template {{maliciousFunction()}}
+* Ability to execute arbitrary javascript within template {% raw %}{{maliciousFunction()}}{% endraw %}
 
 #### Demo:
 Test suite of the official specification [here](templ.html).
