@@ -1,0 +1,25 @@
+{
+  "name": "templ",
+  "version": "1.0.0",
+  "description": "mustache compatible template library with extras",
+  "main": "templ.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fockjef/templ.git"
+  },
+  "keywords": [
+    "template",
+    "mustache"
+  ],
+  "author": "fockjef",
+  "license": "MIT",
+  "homepage": "https://github.com/fockjef/templ#readme",
+  "dependencies": {
+    "grunt-contrib-uglify": "^4.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-jasmine": "^2.0.3",
+    "grunt-contrib-jshint": "^2.1.0"
+  }
+}
